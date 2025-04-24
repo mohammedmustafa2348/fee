@@ -1,0 +1,84 @@
+{
+    "info": {
+        "name": "Fee Service API",
+        "description": "API collection for fee collection and receipt generation",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Collect Fee Payment",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "http://localhost:8082/api/fees",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "8082",
+                    "path": ["api", "fees"]
+                },
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"studentId\": \"STD001\",\n    \"amount\": 100.00,\n    \"cardNumber\": \"1234567890123456\",\n    \"cardType\": \"VISA\"\n}"
+                },
+                "description": "Endpoint to collect fee payment from a student"
+            }
+        },
+        {
+            "name": "Get All Transactions",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8082/api/fees",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "8082",
+                    "path": ["api", "fees"]
+                },
+                "description": "Retrieves all fee transactions"
+            }
+        },
+        {
+            "name": "Get Student Transactions",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8082/api/fees/student/STD001",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "8082",
+                    "path": ["api", "fees", "student", "STD001"]
+                },
+                "description": "Retrieves all fee transactions for a specific student"
+            }
+        },
+        {
+            "name": "Generate Receipt",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8082/api/fees/receipt/REF-12345678",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "8082",
+                    "path": ["api", "fees", "receipt", "REF-12345678"]
+                },
+                "description": "Generates and emails a receipt for a specific transaction"
+            }
+        }
+    ],
+    "variable": [
+        {
+            "key": "baseUrl",
+            "value": "http://localhost:8082"
+        }
+    ]
+}

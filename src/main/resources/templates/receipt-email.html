@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Payment Receipt</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            color: #2c3e50;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 0.8em;
+            color: #7f8c8d;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Info table specific styles */
+        .info-table td {
+            border-bottom: none; /* Override the default border */
+        }
+
+        .info-label {
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1 style="text-align: center" th:text="${schoolName}"></h1>
+        <h2 style="background-color: #5724ac; color: white; text-align: center;">Your transaction is Successful</h2>
+    </div>
+
+    <p>Hi <span th:text="${studentName}"></span>,</p>
+
+    <p>Congratulations! Your payment transaction is successful with <strong><span
+            th:text="${schoolName}"></span></strong>.</p>
+
+    <h3 style="background-color: #5724ac; color: #ffffff; text-align: center;">Transaction Details:</h3>
+    <div style="display: flex; align-items: center; gap: 20px;">
+        <div style="width: 200px; height: 200px; background-color: #5724ac; display: flex; align-items: center; justify-content: center;">
+            <span style="color: white; text-align:center; font-family: Arial, sans-serif; font-weight: bold; font-size: 24px;">School Logo</span>
+        </div>
+        <table class="info-table">
+            <tbody>
+            <tr>
+                <td class="info-label">Date & Time:</td>
+                <td th:text="${transactionDateTime}"></td>
+            </tr>
+            <tr>
+                <td class="info-label">Student Name:</td>
+                <td th:text="${studentName}"></td>
+            </tr>
+            <tr>
+                <td class="info-label">Student ID:</td>
+                <td th:text="${studentId}"></td>
+            </tr>
+            <tr>
+                <td class="info-label">Reference #:</td>
+                <td th:text="${referenceNumber}"></td>
+            </tr>
+            <tr>
+                <td class="info-label">Card #:</td>
+                <td th:text="${cardNumber}"></td>
+            </tr>
+            <tr>
+                <td class="info-label">Card Type:</td>
+                <td th:text="${cardType}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <h3 style="background-color: #5724ac; color: #ffffff; text-align: center;">Purchase Details</h3>
+    <table>
+        <tr>
+            <th>Description</th>
+            <th>Amount (AED)</th>
+        </tr>
+        <tr>
+            <td>Tuition Fees</td>
+            <td th:text="${amount}"></td>
+        </tr>
+        <tr>
+            <td><strong>Total</strong></td>
+            <td><strong th:text="${amount}"></strong></td>
+        </tr>
+    </table>
+
+    <div class="footer">
+        <p>This is an automated email, please do not reply.</p>
+        <p>For any queries, email us at <span th:text="${schoolEmail}"></span></p>
+    </div>
+</div>
+</body>
+</html>

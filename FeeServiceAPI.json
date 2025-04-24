@@ -1,0 +1,137 @@
+{
+  "info": {
+    "_postman_id": "fee-service-collection",
+    "name": "Fee Service API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Postman collection for Fee Service API endpoints"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/actuator/health",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8082",
+          "path": ["actuator", "health"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Collect Fee Payment",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"studentId\": \"STU001\",\n  \"amount\": 150.50,\n  \"cardNumber\": \"4111111111111111\",\n  \"cardType\": \"VISA\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8082/api/fees",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8082",
+          "path": ["api", "fees"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Fee Transactions by Student",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/fees/student/STU001",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8082",
+          "path": ["api", "fees", "student", "STU001"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Generate Receipt",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/api/fees/receipt/REF-ABC123",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8082",
+          "path": ["api", "fees", "receipt", "REF-ABC123"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "H2 Console",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8082/h2-console",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8082",
+          "path": ["h2-console"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "exec": [
+          "// Status code is 200",
+          "pm.test(\"Status code is 200\", function() {",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "",
+          "// Response time is less than 500ms",
+          "pm.test(\"Response time is less than 500ms\", function() {",
+          "    pm.expect(pm.response.responseTime).to.be.below(500);",
+          "});",
+          "",
+          "// Content-Type header exists",
+          "pm.test(\"Content-Type header is present\", function() {",
+          "    pm.response.to.have.header(\"Content-Type\");",
+          "});"
+        ],
+        "type": "text/javascript"
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8082"
+    },
+    {
+      "key": "studentId",
+      "value": "STU001"
+    },
+    {
+      "key": "referenceNumber",
+      "value": "REF-ABC123"
+    }
+  ]
+}
