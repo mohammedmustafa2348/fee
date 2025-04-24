@@ -30,8 +30,8 @@ The Fee Service provides the following core functionalities:
 
 1. Clone the repository
    ```bash
-   git clone <repository-url>
-   cd fee-service
+   git clone https://github.com/mohammedmustafa2348/fee.git
+   cd fee
    ```
 
 2. Build the application
